@@ -1,0 +1,40 @@
+.tweet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tweet-content {
+    border-radius: 25px;
+    background-color: rgb(105, 170, 242);
+    width: 100%;
+    margin: 10px;
+}
+
+.tweet-title {
+    border-radius: 25px 25px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding-top: 5px;
+    background-color: rgb(29, 161, 242);
+}
+
+.tweet-author {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tweet-date {
+    margin-right: 5px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.tweet-text {
+    text-align: justify;
+    font-size: 18px;
+    margin: 5px;
+}

@@ -16,24 +16,24 @@ export const getTweetListRequest = async params => {
             text: 'Hello world'
         },
         {
-            author: 'igor',
+            author: 'Vasyl Klymiv',
             date: '30-09-2010',
-            text: 'tak to'
+            text: 'This story about a project for seaching tweets on Twitter'
         },
         {
-            author: 'igor',
+            author: 'Vasyl Klymiv',
             date: '30-09-2010',
-            text: 'tak to'
+            text: 'This story about a project for seaching tweets on Twitter'
         },
         {
-            author: 'igor',
+            author: 'Vasyl Klymiv',
             date: '30-09-2010',
-            text: 'tak to'
+            text: 'This story about a project for seaching tweets on Twitter'
         }
     ]
     // q: input value 
-   /*  return await client.get('search/tweets', {q: 'node.js', function(error, tweets, response) {
-    console.log(tweets);
-    }
- }); */
+    /*  return await client.get('search/tweets', {q: 'node.js', function(error, tweets, response) {
+     console.log(tweets);
+     }
+  }); */
 };
