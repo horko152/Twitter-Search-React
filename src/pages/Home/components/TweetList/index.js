@@ -4,11 +4,12 @@ import Tweet from '../Tweet';
 import {getTweetListRequest} from '../../../../services/Tweets/api';
 import './index.css';
 
-const TweetList = () => {
+const TweetList = ({/*inputValue*/}) => {
     const [listOfTweets, setListOfTweets] = useState([]);
     useEffect(() => {
-        getTweetListRequest().then(res => {
+        getTweetListRequest(/*inputValue*/).then(res => {
             setListOfTweets(res);
+            console.log(/*inputValue*/);
         });
     }, []);
     return (

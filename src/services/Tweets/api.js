@@ -9,31 +9,35 @@ const client = new Twitter({
 });
 
 export const getTweetListRequest = async params => {
-    return [
-        {
-            author: 'Ernest Klein',
-            date: '12-08-2033',
-            text: 'Hello world'
-        },
-        {
-            author: 'Vasyl Klymiv',
-            date: '30-09-2010',
-            text: 'This story about a project for seaching tweets on Twitter'
-        },
-        {
-            author: 'Vasyl Klymiv',
-            date: '30-09-2010',
-            text: 'This story about a project for seaching tweets on Twitter'
-        },
-        {
-            author: 'Vasyl Klymiv',
-            date: '30-09-2010',
-            text: 'This story about a project for seaching tweets on Twitter'
-        }
-    ]
-    // q: input value 
-    /*  return await client.get('search/tweets', {q: 'node.js', function(error, tweets, response) {
-     console.log(tweets);
-     }
-  }); */
+    if (params == null) {
+        return [
+            {
+                author: 'Ernest Klein',
+                date: '12-08-2033',
+                text: 'Hello world'
+            },
+            {
+                author: 'Vasyl Klymiv',
+                date: '30-09-2010',
+                text: 'This story about a project for searching tweets on Twitter'
+            },
+            {
+                author: 'Vasyl Klymiv',
+                date: '30-09-2010',
+                text: 'This story about a project for searching tweets on Twitter'
+            },
+            {
+                author: 'Vasyl Klymiv',
+                date: '30-09-2010',
+                text: 'This story about a project for searching tweets on Twitter'
+            }
+        ]
+    } else {
+        // q: input value
+        return await client.get('search/tweets', {
+            q: params, function(error, tweets, response) {
+                console.log(tweets);
+            }
+        });
+    }
 };

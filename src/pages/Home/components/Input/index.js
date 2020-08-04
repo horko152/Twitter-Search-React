@@ -1,21 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './index.css';
 
-const Input = () => {
-    const [inputValue, setInputValue] = useState();
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            // after pressing Enter we call method that generate new list of tweets by keyword
-            console.log(inputValue);
-            console.log('Enter was pressed');
-        }
-    }
+function Input({
+                   placeholder = 'Search tweets',
+                   error,
+                   value,
+                   onChange,
+                   onKeyPress,
+                   type = 'text',
+                   inputClassName = 'search-input'
+               }) {
     return (
         <div className="input-content">
-            <input className="search-input" type="text" value={inputValue} onKeyPress={handleKeyPress}
-                   onChange={e => setInputValue(e.target.value)} placeholder="Search tweets"/>
+            <input
+                className={inputClassName}
+                type={type}
+                value={value}
+                onKeyPress={onKeyPress}
+                onChange={e => onChange(e.target.value)}
+                placeholder={placeholder}
+            />
+            {error && <div>{error}</div>}
         </div>
-    );
-};
+    )
+}
 
 export default Input;
