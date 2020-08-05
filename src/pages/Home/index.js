@@ -1,20 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Input from './components/Input';
 import TweetList from './components/TweetList';
 
+import {getTweetListRequest} from "../../services/TweetList/api";
+// import Server from '../../server/server.js';
+
 const Home = () => {
 
     const [inputValue, setInputValue] = useState();
+    // const [listOfTweets, setListOfTweets] = useState([]);
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            // after pressing Enter we give input value to the component Tweet list
-            console.log('Enter was pressed');
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
             console.log(inputValue);
-            setInputValue('');
-        }
-    }
+            // Send Axios request here
+        }, 3000)
+
+        return () => clearTimeout(delayDebounceFn)
+    }, [inputValue])
+
 
     return (
         <div className="main-content">
@@ -22,7 +27,6 @@ const Home = () => {
             <Input
                 value={inputValue}
                 onChange={value => setInputValue(value)}
-                onKeyPress={handleKeyPress}
             />
             <h3 className="result-title">Result</h3>
             <TweetList /*inputValue={inputValue}*//>
