@@ -5,57 +5,47 @@ import Input from "../MainComponent/components/Input";
 import AnnouncementList from "../MainComponent/components/AnnouncementList";
 import AddAnnouncement from "./components/AddAnnouncement";
 import EditAnnouncement from "./components/EditAnnouncement";
-
+import {listData, initialFormState} from "./constants";
 
 import './index.css';
 
 const MainComponent = () => {
-
     const [inputValue, setInputValue] = useState();
-
     const [editing, setEditing] = useState(false);
-
-    const initialFormState = {id: null, title: '', date: null, description:''}
-    const [currentAnnouncement, setCurrentAnnouncement] = useState(initialFormState)
-    const listData = [
-        {id: 1, title: 'Looking for a job', date: '12-08-2018', description: 'junior something developer'},
-        {id: 2, title: 'Looking for a new job', date: '12-08-2018', description: 'junior something developer'},
-        {id: 3, title: 'Looking for a old job', date: '12-08-2018', description: 'junior something developer'}
-    ];
+    const [currentAnnouncement, setCurrentAnnouncement] = useState(initialFormState); // TODO Поміняти карент анонсмент
     const [listOfAnnouncements, setListOfAnnouncements] = useState(listData);
+    const [searchListOfAnnouncement, setSearchListOfAnnouncement] = useState(listData);
 
-    const newDate = new Date();
-    const addNewAnnouncement = (announcement) => {
-        const newAnnouncement = {
-            ...announcement,
-            id: listOfAnnouncements.length + 1,
-            date: moment().format('DD-MM-YYYY'),
-        }
-        setListOfAnnouncements([ ...listOfAnnouncements, newAnnouncement ]);
-    }
+    useEffect(() => {
+        // TODO фільтрувати по інпут велью
+    }, [inputValue]);
 
+    useEffect(() => {
+        setSearchListOfAnnouncement(listOfAnnouncements);
+    }, [listOfAnnouncements]);
+
+    // TODO перекинути в дочірній компонент
     const deleteAnnouncement = (id) => {
-            setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
+        setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
     }
 
+    // TODO перекинути в дочірній компонент
     const updateAnnouncement = (id, updatedAnnouncement) => {
         setEditing(false);
-        setListOfAnnouncements(listOfAnnouncements.map(announcement => (announcement.id === id ? updatedAnnouncement : announcement)))
+        setListOfAnnouncements(listOfAnnouncements.map(announcement =>
+            (announcement.id === id ? updatedAnnouncement : announcement)
+        ))
     }
 
-    const editRow = announcement =>{
+    const editRow = announcement => {
         setEditing(true);
-        setCurrentAnnouncement({id: announcement.id, title: announcement.title, date: announcement.date, description: announcement.description});
+        setCurrentAnnouncement({
+            id: announcement.id,
+            title: announcement.title,
+            date: announcement.date,
+            description: announcement.description
+        });
     }
-
-    // useEffect(() => {
-    //     const delayDebounceFn = setTimeout(() => {
-    //         console.log(inputValue);
-    //
-    //     }, 3000)
-    //
-    //     return () => clearTimeout(delayDebounceFn)
-    // }, [inputValue])
 
     return (
         <div className="main">
@@ -70,26 +60,30 @@ const MainComponent = () => {
                 </div>
                 <div className="list-content">
                     <AnnouncementList
-                        listOfAnnouncements={listOfAnnouncements}
-                        deleteAnnouncement = {deleteAnnouncement}
+                        listOfAnnouncements={searchListOfAnnouncement}
+                        deleteAnnouncement={deleteAnnouncement}
                         editRow={editRow}
                     />
                     {editing ? (
                         <div>
-                        <h3 className="edit-announcement-title">Edit Announcement</h3>
-                        <EditAnnouncement
-                            editting={editing}
-                            setEditing={setEditing}
-                            currentAnnouncement={currentAnnouncement}
-                            updateAnnouncement={updateAnnouncement}
-                        />
+                            <h3 className="edit-announcement-title">Edit Announcement</h3>
+                            <EditAnnouncement
+                                editting={editing}
+                                setEditing={setEditing}
+                                currentAnnouncement={currentAnnouncement}
+                                updateAnnouncement={updateAnnouncement}
+                            />
                         </div>
                     ) : (
                         <div>
-                        <h3 className="add-announcement-title">Add New Announcement</h3>
-                        <AddAnnouncement addNewAnnouncement={addNewAnnouncement}/>
+                            <h3 className="add-announcement-title">Add New Announcement</h3>
+                            <AddAnnouncement
+                                setListOfAnnouncements={setListOfAnnouncements}
+                                listOfAnnouncements={listOfAnnouncements}
+                                lastId={listOfAnnouncements[listOfAnnouncements?.length - 1]?.id + 1}
+                            />
                         </div>
-                        )}
+                    )}
                 </div>
             </div>
         </div>

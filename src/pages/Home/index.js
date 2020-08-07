@@ -13,7 +13,6 @@ const Home = () => {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            console.log(inputValue);
             // Send Axios request here
         }, 3000)
 

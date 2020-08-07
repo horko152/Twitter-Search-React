@@ -2,13 +2,12 @@ import React, {useEffect, useState} from 'react'
 import "./index.css"
 
 const EditAnnouncement = ({currentAnnouncement, updateAnnouncement, setEditing, editing}) => {
-
     const [announcement, setAnnouncement] = useState(currentAnnouncement)
 
     useEffect(() => {
         setAnnouncement(currentAnnouncement)
-        console.log(announcement)
-        },[editing])
+        },[editing]);
+
     const handleInputChange = event => {
         const { name, value } = event.target
         setAnnouncement({ ...announcement, [name]: value })
@@ -16,7 +15,9 @@ const EditAnnouncement = ({currentAnnouncement, updateAnnouncement, setEditing, 
 
     const handleSubmit = event => {
         event.preventDefault()
-        if (announcement.title && announcement.description) return updateAnnouncement(announcement.id, announcement)
+        if (announcement.title && announcement.description) {
+            return updateAnnouncement(announcement.id, announcement)
+        }
     }
 
     return (

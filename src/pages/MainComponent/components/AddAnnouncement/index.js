@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import {initialFormState} from "../../constants";
 import './index.css';
+import moment from "moment";
 
-const AddAnnouncement = ({addNewAnnouncement}) => {
-
-    const initialFormState = {id: null, title: '', date: null, description:''}
+const AddAnnouncement = ({setListOfAnnouncements,listOfAnnouncements,lastId}) => {
     const [announcement, setAnnouncement] = useState(initialFormState);
 
     const handleInputChange = (event) => {
@@ -14,8 +14,16 @@ const AddAnnouncement = ({addNewAnnouncement}) => {
     const handleSubmit = event => {
         event.preventDefault();
         if(announcement.title && announcement.description) return addNewAnnouncement(announcement);
-        console.log(announcement);
         setAnnouncement(initialFormState);
+    }
+
+    const addNewAnnouncement = (announcement) => {
+        const newAnnouncement = {
+            ...announcement,
+            id: lastId,
+            date: moment().format('DD-MM-YYYY'),
+        }
+        setListOfAnnouncements([...listOfAnnouncements, newAnnouncement]);
     }
 
     return (

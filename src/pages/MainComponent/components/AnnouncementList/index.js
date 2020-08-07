@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React from 'react';
 import Announcement from '../Announcement';
 import './index.css';
 
@@ -7,7 +6,6 @@ const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) =>
 
     return (
         <div className="announcement-list">
-            {/*listOfTweets?.map*/}
             <table>
                 <thead>
                 <tr>
@@ -17,14 +15,14 @@ const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) =>
                 </tr>
                 </thead>
                 <tbody>
-            {listOfAnnouncements?.map((announcement, index) => {
-                return <Announcement
-                    key={index}
-                    announcement={announcement}
-                    deleteAnnouncement={deleteAnnouncement}
-                    editRow={editRow}
-                />;
-            })}
+                {listOfAnnouncements?.map((announcement, index) => {
+                    return <Announcement
+                        key={index}
+                        announcement={announcement}
+                        deleteAnnouncement={deleteAnnouncement}
+                        editRow={editRow}
+                    />;
+                })}
                 </tbody>
             </table>
         </div>
