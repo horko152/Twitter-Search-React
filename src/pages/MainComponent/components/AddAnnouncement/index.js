@@ -13,7 +13,7 @@ const AddAnnouncement = ({addNewAnnouncement}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        if(!announcement.title || !announcement.description) return addNewAnnouncement(announcement);
+        if(announcement.title && announcement.description) return addNewAnnouncement(announcement);
         console.log(announcement);
         setAnnouncement(initialFormState);
     }

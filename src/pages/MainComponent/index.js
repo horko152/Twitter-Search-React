@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import _, {debounce} from 'lodash';
+import moment from 'moment'
 import Input from "../MainComponent/components/Input";
 import AnnouncementList from "../MainComponent/components/AnnouncementList";
 import AddAnnouncement from "./components/AddAnnouncement";
@@ -24,17 +25,20 @@ const MainComponent = () => {
     const [listOfAnnouncements, setListOfAnnouncements] = useState(listData);
 
     const newDate = new Date();
-    const addNewAnnouncement = ({announcement}) => {
-        announcement.id = listOfAnnouncements.length + 1;
-        announcement.date = newDate.getDate();
-        setListOfAnnouncements([...listOfAnnouncements, announcement]);
+    const addNewAnnouncement = (announcement) => {
+        const newAnnouncement = {
+            ...announcement,
+            id: listOfAnnouncements.length + 1,
+            date: moment().format('DD-MM-YYYY'),
+        }
+        setListOfAnnouncements([ ...listOfAnnouncements, newAnnouncement ]);
     }
 
-    const deleteAnnouncement = ({id}) => {
+    const deleteAnnouncement = (id) => {
             setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
     }
 
-    const updateAnnouncement = ({id, updatedAnnouncement}) => {
+    const updateAnnouncement = (id, updatedAnnouncement) => {
         setEditing(false);
         setListOfAnnouncements(listOfAnnouncements.map(announcement => (announcement.id === id ? updatedAnnouncement : announcement)))
     }
@@ -83,7 +87,7 @@ const MainComponent = () => {
                     ) : (
                         <div>
                         <h3 className="add-announcement-title">Add New Announcement</h3>
-                        <AddAnnouncement addNewAnouncement={addNewAnnouncement}/>
+                        <AddAnnouncement addNewAnnouncement={addNewAnnouncement}/>
                         </div>
                         )}
                 </div>

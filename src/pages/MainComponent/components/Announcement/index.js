@@ -3,7 +3,7 @@ import './index.css';
 
 const Announcement = ({announcement,deleteAnnouncement,editRow}) => {
 
-    const handleDeleteAnnouncement = ({id}) => {
+    const handleDeleteAnnouncement = (id) => {
         let answer = window.confirm('Are you sure?');
         if(answer) deleteAnnouncement(id);
     }

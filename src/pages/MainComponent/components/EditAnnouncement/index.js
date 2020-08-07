@@ -16,7 +16,7 @@ const EditAnnouncement = ({currentAnnouncement, updateAnnouncement, setEditing, 
 
     const handleSubmit = event => {
         event.preventDefault()
-        if (!announcement.title || !announcement.description) return updateAnnouncement(announcement.id, announcement)
+        if (announcement.title && announcement.description) return updateAnnouncement(announcement.id, announcement)
     }
 
     return (

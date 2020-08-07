@@ -17,8 +17,9 @@ const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) =>
                 </tr>
                 </thead>
                 <tbody>
-            {listOfAnnouncements?.map(announcement => {
+            {listOfAnnouncements?.map((announcement, index) => {
                 return <Announcement
+                    key={index}
                     announcement={announcement}
                     deleteAnnouncement={deleteAnnouncement}
                     editRow={editRow}
