@@ -3,13 +3,7 @@ import React, {useState} from 'react';
 import Announcement from '../Announcement';
 import './index.css';
 
-const AnnouncementList = () => {
-    const listData = [
-        {id: 1, title: 'Looking for a job', date: '12-08-2018', description: 'junior something developer'},
-        {id: 2, title: 'Looking for a new job', date: '12-08-2018', description: 'junior something developer'},
-        {id: 3, title: 'Looking for a old job', date: '12-08-2018', description: 'junior something developer'}
-    ]
-    const [listOfAnnouncements, setListOfAnnouncements] = useState(listData);
+const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) => {
 
     return (
         <div className="announcement-list">
@@ -23,8 +17,12 @@ const AnnouncementList = () => {
                 </tr>
                 </thead>
                 <tbody>
-            {listOfAnnouncements && listOfAnnouncements.length > 0 && listOfAnnouncements.map(announcement => {
-                return <Announcement announcement={announcement}/>;
+            {listOfAnnouncements?.map(announcement => {
+                return <Announcement
+                    announcement={announcement}
+                    deleteAnnouncement={deleteAnnouncement}
+                    editRow={editRow}
+                />;
             })}
                 </tbody>
             </table>

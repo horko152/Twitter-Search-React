@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "express": "^4.17.1",
+    "lodash": "^4.17.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -38,6 +39,7 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.0"
+    "@babel/preset-env": "^7.11.0",
+    "lodash.debounce": "^4.0.8"
   }
 }
