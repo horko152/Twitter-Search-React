@@ -2,7 +2,7 @@ import React from 'react';
 import Announcement from './Announcement';
 import './index.css';
 
-const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow}) => {
+const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow, setSelectedSimilar}) => {
 
     const deleteAnnouncement = (id) => {
         setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
@@ -27,6 +27,7 @@ const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow}
                             announcement={announcement}
                             deleteAnnouncement={deleteAnnouncement}
                             editRow={editRow}
+                            setSelectedSimilar={setSelectedSimilar}
                         />;
                     })
                 ) : (

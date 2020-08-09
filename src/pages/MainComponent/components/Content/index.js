@@ -9,6 +9,7 @@ const Content = ({ listOfAnnouncements, setListOfAnnouncements, inputValue }) =>
 
     const [ editing, setEditing ] = useState(false);
     const [ currentAnnouncement, setCurrentAnnouncement ] = useState(initialFormState);
+    const [ selectedSimilar, setSelectedSimilar] = useState(initialFormState);
 
     const editRow = announcement => {
         setEditing(true);
@@ -27,6 +28,7 @@ const Content = ({ listOfAnnouncements, setListOfAnnouncements, inputValue }) =>
                 listOfAnnouncements={listOfAnnouncements}
                 setListOfAnnouncements={setListOfAnnouncements}
                 editRow={editRow}
+                setSelectedSimilar={setSelectedSimilar}
             />
             {editing ? (
                 <div>
@@ -54,6 +56,7 @@ const Content = ({ listOfAnnouncements, setListOfAnnouncements, inputValue }) =>
                 listOfAnnouncements={listOfAnnouncements}
                 setListOfAnnouncements={setListOfAnnouncements}
                 editRow={editRow}
+                selectedSimilar={selectedSimilar}
             />
         </>
     );

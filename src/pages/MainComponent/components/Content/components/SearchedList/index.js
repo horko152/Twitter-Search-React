@@ -3,7 +3,7 @@ import { listData } from '../../../../constants';
 import ignoreCase from 'ignore-case';
 import AnnouncementList from '../AnnouncementList';
 
-const SearchedList = ({ listOfAnnouncements, setListOfAnnouncements, inputValue, editRow }) => {
+const SearchedList = ({ listOfAnnouncements, setListOfAnnouncements, inputValue, editRow, setSelectedSimilar }) => {
     const [ searchListOfAnnouncement, setSearchListOfAnnouncement ] = useState(listData);
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const SearchedList = ({ listOfAnnouncements, setListOfAnnouncements, inputValue,
             listOfAnnouncements={searchListOfAnnouncement}
             setListOfAnnouncements={setListOfAnnouncements}
             editRow={editRow}
+            setSelectedSimilar={setSelectedSimilar}
         />
     );
 };
