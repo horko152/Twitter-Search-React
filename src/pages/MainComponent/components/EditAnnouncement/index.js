@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import "./index.css"
 
-const EditAnnouncement = ({currentAnnouncement, updateAnnouncement, setEditing, editing}) => {
+const EditAnnouncement = ({listOfAnnouncements, setListOfAnnouncements, currentAnnouncement, setEditing, editing}) => {
     const [announcement, setAnnouncement] = useState(currentAnnouncement)
 
     useEffect(() => {
         setAnnouncement(currentAnnouncement)
         },[editing]);
+
+    const updateAnnouncement = (id, updatedAnnouncement) => {
+        setEditing(false);
+        setListOfAnnouncements(listOfAnnouncements.map(announcement =>
+            (announcement.id === id ? updatedAnnouncement : announcement)
+        ))
+    }
 
     const handleInputChange = event => {
         const { name, value } = event.target

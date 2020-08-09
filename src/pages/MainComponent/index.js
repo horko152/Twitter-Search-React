@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import _, {debounce} from 'lodash';
-import moment from 'moment'
+import _, {includes} from 'lodash';
+import ignoreCase from 'ignore-case'
 import Input from "../MainComponent/components/Input";
 import AnnouncementList from "../MainComponent/components/AnnouncementList";
 import AddAnnouncement from "./components/AddAnnouncement";
@@ -12,30 +12,20 @@ import './index.css';
 const MainComponent = () => {
     const [inputValue, setInputValue] = useState();
     const [editing, setEditing] = useState(false);
-    const [currentAnnouncement, setCurrentAnnouncement] = useState(initialFormState); // TODO Поміняти карент анонсмент
+    const [currentAnnouncement, setCurrentAnnouncement] = useState(initialFormState);
     const [listOfAnnouncements, setListOfAnnouncements] = useState(listData);
     const [searchListOfAnnouncement, setSearchListOfAnnouncement] = useState(listData);
+    const [similarListOfAnnouncement, setSimilarListOfAnnouncement] = useState([]);
 
     useEffect(() => {
-        // TODO фільтрувати по інпут велью
+        setSearchListOfAnnouncement(listOfAnnouncements.filter(announcement =>
+            ignoreCase.includes(announcement.title, inputValue))
+        );
     }, [inputValue]);
 
     useEffect(() => {
         setSearchListOfAnnouncement(listOfAnnouncements);
     }, [listOfAnnouncements]);
-
-    // TODO перекинути в дочірній компонент
-    const deleteAnnouncement = (id) => {
-        setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
-    }
-
-    // TODO перекинути в дочірній компонент
-    const updateAnnouncement = (id, updatedAnnouncement) => {
-        setEditing(false);
-        setListOfAnnouncements(listOfAnnouncements.map(announcement =>
-            (announcement.id === id ? updatedAnnouncement : announcement)
-        ))
-    }
 
     const editRow = announcement => {
         setEditing(true);
@@ -56,34 +46,40 @@ const MainComponent = () => {
                         value={inputValue}
                         onChange={value => setInputValue(value)}
                     />
-                    <h3 className="result-title">Result</h3>
-                </div>
-                <div className="list-content">
                     <AnnouncementList
                         listOfAnnouncements={searchListOfAnnouncement}
-                        deleteAnnouncement={deleteAnnouncement}
+                        setListOfAnnouncements={setListOfAnnouncements}
                         editRow={editRow}
                     />
-                    {editing ? (
-                        <div>
-                            <h3 className="edit-announcement-title">Edit Announcement</h3>
-                            <EditAnnouncement
-                                editting={editing}
-                                setEditing={setEditing}
-                                currentAnnouncement={currentAnnouncement}
-                                updateAnnouncement={updateAnnouncement}
-                            />
-                        </div>
-                    ) : (
-                        <div>
-                            <h3 className="add-announcement-title">Add New Announcement</h3>
-                            <AddAnnouncement
-                                setListOfAnnouncements={setListOfAnnouncements}
-                                listOfAnnouncements={listOfAnnouncements}
-                                lastId={listOfAnnouncements[listOfAnnouncements?.length - 1]?.id + 1}
-                            />
-                        </div>
-                    )}
+                </div>
+                {editing ? (
+                    <div>
+                        <h3 className="edit-announcement-title">Edit Announcement</h3>
+                        <EditAnnouncement
+                            editting={editing}
+                            setEditing={setEditing}
+                            currentAnnouncement={currentAnnouncement}
+                            listOfAnnouncements={listOfAnnouncements}
+                            setListOfAnnouncements={setListOfAnnouncements}
+                        />
+                    </div>
+                ) : (
+                    <div>
+                        <h3 className="add-announcement-title">Add New Announcement</h3>
+                        <AddAnnouncement
+                            setListOfAnnouncements={setListOfAnnouncements}
+                            listOfAnnouncements={listOfAnnouncements}
+                            lastId={listOfAnnouncements[listOfAnnouncements?.length - 1]?.id + 1}
+                        />
+                    </div>
+                )}
+                <div className="search-content">
+                <h3 className="similar-list-title">Similar List</h3>
+                <AnnouncementList
+                    listOfAnnouncements={similarListOfAnnouncement}
+                    setListOfAnnouncements={setSimilarListOfAnnouncement}
+                    editRow={editRow}
+                />
                 </div>
             </div>
         </div>

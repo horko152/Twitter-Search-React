@@ -2,7 +2,13 @@ import React from 'react';
 import Announcement from '../Announcement';
 import './index.css';
 
-const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) => {
+const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow}) => {
+
+    const deleteAnnouncement = (id) => {
+        setListOfAnnouncements(listOfAnnouncements.filter(announcement => announcement.id !== id))
+    }
+
+
 
     return (
         <div className="announcement-list">
@@ -10,19 +16,24 @@ const AnnouncementList = ({listOfAnnouncements, deleteAnnouncement, editRow}) =>
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Crated_At</th>
+                    <th className="in-center">Crated_At</th>
                     <th>Description</th>
                 </tr>
                 </thead>
                 <tbody>
-                {listOfAnnouncements?.map((announcement, index) => {
-                    return <Announcement
-                        key={index}
-                        announcement={announcement}
-                        deleteAnnouncement={deleteAnnouncement}
-                        editRow={editRow}
-                    />;
-                })}
+                {listOfAnnouncements.length > 0 ? (listOfAnnouncements?.map((announcement, index) => {
+                        return <Announcement
+                            key={index}
+                            announcement={announcement}
+                            deleteAnnouncement={deleteAnnouncement}
+                            editRow={editRow}
+                        />;
+                    })
+                ) : (
+                    <tr className="error-row">
+                        <td>No announcements</td>
+                    </tr>
+                )}
                 </tbody>
             </table>
         </div>
