@@ -6,7 +6,7 @@ const EditAnnouncement = ({listOfAnnouncements, setListOfAnnouncements, currentA
 
     useEffect(() => {
         setAnnouncement(currentAnnouncement)
-        },[editing]);
+    }, [editing]);
 
     const updateAnnouncement = (id, updatedAnnouncement) => {
         setEditing(false);
@@ -16,8 +16,8 @@ const EditAnnouncement = ({listOfAnnouncements, setListOfAnnouncements, currentA
     }
 
     const handleInputChange = event => {
-        const { name, value } = event.target
-        setAnnouncement({ ...announcement, [name]: value })
+        const {name, value} = event.target
+        setAnnouncement({...announcement, [name]: value})
     }
 
     const handleSubmit = event => {
@@ -30,29 +30,29 @@ const EditAnnouncement = ({listOfAnnouncements, setListOfAnnouncements, currentA
     return (
         <form onSubmit={handleSubmit}>
             <div className="input-container">
-            <label>Title</label>
-            <input
-                type="text"
-                name="title"
-                value={announcement.title}
-                onChange={handleInputChange}
-            />
-            <label>Description</label>
-            <input
-                type="text"
-                name="description"
-                value={announcement.description}
-                onChange={handleInputChange}
-            />
+                <label>Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    value={announcement.title}
+                    onChange={handleInputChange}
+                />
+                <label>Description</label>
+                <input
+                    type="text"
+                    name="description"
+                    value={announcement.description}
+                    onChange={handleInputChange}
+                />
             </div>
             <div className="button-container">
-            <button>Update announcement</button>
-            <button
-                onClick={() => setEditing(false)}
-                className="button"
-            >
-                Cancel
-            </button>
+                <button>Update announcement</button>
+                <button
+                    onClick={() => setEditing(false)}
+                    className="button"
+                >
+                    Cancel
+                </button>
             </div>
         </form>
     )

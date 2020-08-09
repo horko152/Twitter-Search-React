@@ -7,12 +7,26 @@ const SimilarList = ({listOfAnnouncements, setListOfAnnouncements, editRow, sele
 
 
     useEffect(() => {
+        setSimilarListOfAnnouncement(listOfAnnouncements.filter(announcement => {
+                let ifHaveSimilarInTitle = false;
+                let ifHaveSimilarInDescription = false;
 
-        setSimilarListOfAnnouncement(listOfAnnouncements.filter(announcement =>
-            announcement.title.search(selectedSimilar.title)
-            // ||
-            // announcement.description.search(selectedSimilar.description.split(" "))
+                selectedSimilar.title.split(' ').forEach(item => {
+                    if (ignoreCase.includes(announcement.title, item)) {
+                        ifHaveSimilarInTitle = true;
+                    }
+                })
+
+                selectedSimilar.description.split(' ').forEach(item => {
+                    if (ignoreCase.includes(announcement.description, item)) {
+                        ifHaveSimilarInDescription = true;
+                    }
+                })
+
+                return ifHaveSimilarInTitle && ifHaveSimilarInDescription;
+            }
         ));
+
         //TODO similar list filter here
     }, [selectedSimilar?.id]);
 

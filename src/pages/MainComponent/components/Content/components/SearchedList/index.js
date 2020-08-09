@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { listData } from '../../../../constants';
+import React, {useEffect, useState} from 'react';
+import {listData} from '../../../../constants';
 import ignoreCase from 'ignore-case';
 import AnnouncementList from '../AnnouncementList';
 
-const SearchedList = ({ listOfAnnouncements, setListOfAnnouncements, inputValue, editRow, setSelectedSimilar }) => {
-    const [ searchListOfAnnouncement, setSearchListOfAnnouncement ] = useState(listData);
+const SearchedList = ({listOfAnnouncements, setListOfAnnouncements, inputValue, editRow, setSelectedSimilar}) => {
+    const [searchListOfAnnouncement, setSearchListOfAnnouncement] = useState(listData);
 
     useEffect(() => {
         setSearchListOfAnnouncement(listOfAnnouncements.filter(announcement =>
             ignoreCase.includes(announcement.title, inputValue))
         );
-    }, [ inputValue, listOfAnnouncements ]);
+    }, [inputValue, listOfAnnouncements]);
 
     useEffect(() => {
         setSearchListOfAnnouncement(listOfAnnouncements);
-    }, [ listOfAnnouncements ]);
+    }, [listOfAnnouncements]);
 
     return (
         <AnnouncementList

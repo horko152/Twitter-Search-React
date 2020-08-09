@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import EditAnnouncement from './components/EditAnnouncement';
 import AddAnnouncement from './components/AddAnnouncement';
-import { initialFormState } from '../../constants';
+import {initialFormState} from '../../constants';
 import SearchedList from './components/SearchedList';
 import SimilarList from './components/SimilarList';
 
-const Content = ({ listOfAnnouncements, setListOfAnnouncements, inputValue }) => {
+const Content = ({listOfAnnouncements, setListOfAnnouncements, inputValue}) => {
 
-    const [ editing, setEditing ] = useState(false);
-    const [ currentAnnouncement, setCurrentAnnouncement ] = useState(initialFormState);
-    const [ selectedSimilar, setSelectedSimilar] = useState(initialFormState);
+    const [editing, setEditing] = useState(false);
+    const [currentAnnouncement, setCurrentAnnouncement] = useState(initialFormState);
+    const [selectedSimilar, setSelectedSimilar] = useState(initialFormState);
 
     const editRow = announcement => {
         setEditing(true);

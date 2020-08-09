@@ -9,7 +9,6 @@ const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow,
     }
 
 
-
     return (
         <div className="announcement-list">
             <table>
