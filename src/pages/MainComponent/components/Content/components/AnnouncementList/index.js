@@ -1,5 +1,5 @@
 import React from 'react';
-import Announcement from '../Announcement';
+import Announcement from './Announcement';
 import './index.css';
 
 const AnnouncementList = ({listOfAnnouncements, setListOfAnnouncements, editRow}) => {

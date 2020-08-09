@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {initialFormState} from "../../constants";
+import {initialFormState} from "../../../../constants";
 import './index.css';
 import moment from "moment";
 
