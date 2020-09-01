@@ -4,11 +4,11 @@
     flex-direction: column;
     align-items: center;
 }
-
-h3 {
+.search-title{
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
 }
-
 .result-title {
     padding-top: 15px;
+    font-size: 20px;
 }

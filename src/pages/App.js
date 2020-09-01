@@ -1,11 +1,10 @@
 import React from 'react';
-import MainComponent from "./MainComponent";
+import Home from "./Home";
 
 function App() {
     return (
         <div className="App">
-            <MainComponent/>
-            {/*<Home/>*/}
+            <Home/>
         </div>
     );
 };

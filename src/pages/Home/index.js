@@ -1,24 +1,34 @@
 import React, {useState, useEffect} from 'react';
-
+import {debounce, result} from 'lodash';
 import Input from './components/Input';
 import TweetList from './components/TweetList';
+import './index.css';
+import '../../assets/reset.css';
 
-import {getTweetListRequest} from "../../services/TweetList/api";
-// import Server from '../../server/server.js';
 
 const Home = () => {
 
     const [inputValue, setInputValue] = useState();
-    // const [listOfTweets, setListOfTweets] = useState([]);
+    const [listOfTweets, setListOfTweets] = useState([]);
 
+    const gettingData = () => {
+        fetch(`http://localhost:8000/api/twitter/search?q=${inputValue}`)
+        .then((result) => result.json())
+        .then((result) => {
+            console.log(result);
+            if(result?.statuses)
+            {
+                setListOfTweets(result.statuses);
+            }
+            }
+        )
+    }
+    console.log(listOfTweets);
+    const debounceMethod = debounce(gettingData,500);
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            // Send Axios request here
-        }, 3000)
-
-        return () => clearTimeout(delayDebounceFn)
-    }, [inputValue])
-
+        console.log("Some text");
+        debounceMethod();
+    },[inputValue])
 
     return (
         <div className="main-content">
@@ -28,9 +38,11 @@ const Home = () => {
                 onChange={value => setInputValue(value)}
             />
             <h3 className="result-title">Result</h3>
-            <TweetList /*inputValue={inputValue}*//>
+            <TweetList
+                listOfTweets={listOfTweets}
+            />
         </div>
-    );
+);
 };
 
 export default Home;
