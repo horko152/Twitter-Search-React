@@ -1,0 +1,21 @@
+.announcement-list {
+    display: flex;
+    justify-content: center;
+}
+table{
+    max-width: 600px;
+}
+
+tr th{
+    font-size: 18px;
+}
+.error-row{
+    position: absolute;
+    margin: 5px 40px;
+}
+tr .in-center{
+    padding: 0 5px 0 5px;
+}
+tr .center{
+text-align: center;
+}

@@ -1,0 +1,11 @@
+.input-content {
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 0 15px 0;
+}
+
+.search-input {
+    border: 0;
+    border-bottom: 2px solid;
+    min-width: 246px;
+}

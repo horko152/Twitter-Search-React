@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 function Input({
-                   placeholder = 'Search tweets',
+                   placeholder = 'Search announcements',
                    error,
                    value,
                    onChange,

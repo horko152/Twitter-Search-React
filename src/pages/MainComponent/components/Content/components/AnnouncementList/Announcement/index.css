@@ -1,0 +1,18 @@
+
+.table-row{
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid;
+    cursor: pointer;
+}
+.announcement-title, .announcement-date, .announcement-description{
+    padding: 10px;
+    text-align: justify;
+}
+
+.button-container{
+    padding-left: 10px;
+}
+.button, button:last-child{
+    margin: 5px 10px 5px 0px;
+}
