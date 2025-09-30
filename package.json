@@ -9,7 +9,7 @@
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
     "ignore-case": "^0.1.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "lodash.includes": "^4.3.0",
     "lodash.lowercase": "^4.3.0",
     "moment": "^2.27.0",
